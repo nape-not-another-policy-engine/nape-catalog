@@ -1,0 +1,27 @@
+apiVersion: 1.0.0
+kind: AssuranceProcedure
+procedure:
+  nrn: "nrn:procedure:nape-tutorials/tutorial-1:new-employee"
+  short: "New Employee Assurance Procedure"
+  description: |
+    "This procedure verifies that a new employee has completed and pass their Criminal History reviews, has signed all
+    required documents, and completed the onboarding training and pass with the correct scores."
+activity:
+  - name: criminal-history
+    short: "Criminal History"
+    description: "This activity verifies that the new employee does not have a criminal history."
+    action:
+      - name: verify-no-criminal-history
+        short: "Verify No Criminal History"
+        description: "The background check, as evidence, demonstrates the new employee does not have a criminal history."
+        test: "activity/criminal-history/verify-no-criminal-history.py"
+        evidence: "evidence/criminal-history/background-check.txt"
+  - name: document-signatures
+    short: "Signed Documents"
+    description: "This activity verifies that the new employee has signed all required documents."
+    action:
+      - name: signed-compensation-agreement
+        short: "Signed Compensation Agreement"
+        description: "The new employee has signed their compensation agreement."
+        test: "activity/document-signatures/signed-compensation-agreement.py"
+        evidence: "evidence/document-signatures/hrms-employee-onboarding.json"
