@@ -29,7 +29,7 @@ activity:
         short: "0 High CVE"
         description: "There are 0 CVEs with the rating of 'high'."
         test: "activity/vulnerabilty-and-weaknesses/cve_no_high.py"
-        evidence: "evidence/vulnerabilty-and-weaknesses/cve_scan_result.xml"
+        evidence: "evidence/vulnerabilty-and-weaknesses/cve_scan_results.xml"
   - name: app-testing
     short: "Application Testing"
     description: "This activity verifies that all of the proper testing control were either passed, or met the minimum expected criteria."
@@ -38,4 +38,4 @@ activity:
         short: "Unit Test > 80%"
         description: "At least 80% of the unit test passed"
         test: "activity/app-testing/unit_test_gt_80.py"
-        evidence: "evidence/app-testing/unit_test_results.xml"
+        evidence: "evidence/app-testing/unit_test_results.txt"
