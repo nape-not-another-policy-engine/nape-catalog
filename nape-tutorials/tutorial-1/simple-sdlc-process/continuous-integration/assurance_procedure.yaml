@@ -19,5 +19,5 @@ activity:
       - name: requester-not-a-reviewer
         short: "Requester is not Approver"
         description: "The person who initiated the merge request is not one of the people who approved the merge request."
-        test: "activity/peer-eview/requester_not_a_reviewer.py"
+        test: "activity/peer-review/requester_not_a_reviewer.py"
         evidence: "evidence/peer-review/review_tool_report.json"
