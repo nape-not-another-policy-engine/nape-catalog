@@ -21,3 +21,21 @@ activity:
         description: "The person who initiated the merge request is not one of the people who approved the merge request."
         test: "activity/peer-review/requester_not_a_reviewer.py"
         evidence: "evidence/peer-review/review_tool_report.json"
+  - name: vulnerabilty-and-weaknesses
+    short: "Common Vulnerabilyt & Code Weakness"
+    description: "This activity verifies that the proper controls for CVE and CWEs were applied during the CI process."
+    action:
+      - name: no-high-cvee
+        short: "0 High CVE"
+        description: "There are 0 CVEs with the rating of 'high'."
+        test: "activity/vulnerabilty-and-weaknesses/cve_no_high.py"
+        evidence: "evidence/vulnerabilty-and-weaknesses/cve_scan_result.xml"
+  - name: app-testing
+    short: "Application Testing"
+    description: "This activity verifies that all of the proper testing control were either passed, or met the minimum expected criteria."
+    action:
+      - name: unit-test-gte-80
+        short: "Unit Test > 80%"
+        description: "At least 80% of the unit test passed"
+        test: "activity/app-testing/unit_test_gt_80.py"
+        evidence: "evidence/app-testing/unit_test_results.xml"
