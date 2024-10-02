@@ -1,0 +1,23 @@
+apiVersion: 1.0.0
+kind: AssuranceProcedure
+procedure:
+  nrn: "nrn:procedure:software-procedures:continuous-integration"
+  short: "Rust CI Assurnace Procedure"
+  description: |
+    "This is the complete procedure required to integrate a source code change for a rust application 
+    back into the trunk, or main branch, of the source code repository."
+activity:
+  - name: peer-review
+    short: "Peer Review"
+    description: "This activity verifies that all actions require for a successfull peer review were completed."
+    action:
+      - name: at-least-two-reviewers
+        short: "Two (2) Reviewer Approval"
+        description: "There are at least two (2) peer reviews who approved the merge request."
+        test: "activity/peer_review/at_least_two_reviewers.py"
+        evidence: "evidence/peer_review/peer_review.json"
+      - name: requester-not-a-reviewer
+        short: "Requester is not Approver"
+        description: "The person who initiated the merge request is not one of the people who approved the merge request."
+        test: "activity/peer_review/requester_not_a_reviewer.py"
+        evidence: "evidence/peer_review/peer_review.json"
