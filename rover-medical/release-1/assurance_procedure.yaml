@@ -24,7 +24,7 @@ activity:
         evidence: "evidence/pet-medicine-app/app-config.toml"
       - name: database-user-secret
         short: "Database User Secret String"
-        description: "The application retrieves the databse users credentials from the secrets store 'secrets://vault/prod/pet_medicine_app_db_user'."
+        description: "The application retrieves the database users credentials from the secrets store 'secrets://vault/prod/pet_medicine_app_db_user'."
         test: "activity/pet-medicine-app/database-user-secret.py"
         evidence: "evidence/pet-medicine-app/app-config.toml"
       - name: enforce-https
