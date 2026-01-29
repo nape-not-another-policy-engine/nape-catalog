@@ -124,3 +124,18 @@ activity:
         description: "The AuditCtl is installed and operational."
         test: "activity/pet-medicine-host/command-audit-installed.py"
         evidence: "evidence/pet-medicine-host/stdout-command-audit-installed.txt"
+  - name: rover-cloud
+    short: "Rover Cloud"
+    description: |
+      "Verify the Rover Cloud is propelry configured to ensure security and operational resilence control standards are met."
+    action:
+      - name: dmz-exists
+        short: "DMZ Exists"
+        description: "The DMZ is configured correctly for Rover Cloud."
+        test: "activity/rover-cloud/dmz-exists.py"
+        evidence: "evidence/rover-cloud/cloud-config.yaml"
+      - name: intrusion-detection-enabled
+        short: "Intrusion Detection is Enabled"
+        description: "The provided Intrusion Dection system is enabled for Rover Cloud."
+        test: "activity/rover-cloud/intrusion_detection_enabled.py"
+        evidence: "evidence/rover-cloud/cloud-config.yaml"
