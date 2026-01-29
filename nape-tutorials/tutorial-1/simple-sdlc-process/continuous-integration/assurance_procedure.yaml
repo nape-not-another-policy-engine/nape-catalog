@@ -4,7 +4,7 @@ procedure:
   nrn: "nrn:procedure:software-procedures:continuous-integration"
   short: "Rust CI Assurnace Procedure"
   description: |
-    "This is the complete procedure required to integrate a source code change for a rust application 
+    "This is the complete procedure required to integrate a source code change for a rust application
     back into the trunk, or main branch, of the source code repository."
 activity:
   - name: peer-review

@@ -1,0 +1,126 @@
+apiVersion: 1.0.0
+kind: AssuranceProcedure
+procedure:
+  nrn: "nrn:procedure:rover-medical/rover-medicine-system"
+  short: "Rover Medical System - Verification Procedure"
+  description: |
+    "Verifies the configutation and communcations between the Pet Medicine Application and it's database."
+activity:
+  - name: pet-medicine-app
+    short: "Pet Medicine Application Configuration"
+    description: |
+      "Verify the Pet Medicine Application has the required configuration settings to
+      ensure security and operational resilence control standards are met."
+    action:
+      - name: database-connection
+        short: "Database Connection String"
+        description: "The application connects to the databse at network location 'db://pet-medicine-db/prescriptions'."
+        test: "activity/pet-medicine-app/database-connection.py"
+        evidence: "evidence/pet-medicine-app/app-config.toml"
+      - name: database-user
+        short: "Database User"
+        description: "The applicaiton authenticates with the database user of 'Pet_Medicine_App'."
+        test: "activity/pet-medicine-app/database-user.py"
+        evidence: "evidence/pet-medicine-app/app-config.toml"
+      - name: database-user-secret
+        short: "Database User Secret String"
+        description: "The application retrieves the databse users credentials from the secrets store 'secrets://vault/prod/pet_medicine_app_db_user'."
+        test: "activity/pet-medicine-app/database-user-secret.py"
+        evidence: "evidence/pet-medicine-app/app-config.toml"
+      - name: enforce-https
+        short: "Enforce HTTPS"
+        description: "The applicaiton enforces the use of HTTPS when communicating with clients."
+        test: "activity/pet-medicine-app/enforce-https.py"
+        evidence: "evidence/pet-medicine-app/app-config.toml"
+      - name: current-tls-certificate
+        short: "Current TLS Certificate"
+        description: "The applicaiton is using a TLS Certificate that is not expired."
+        test: "activity/pet-medicine-app/current-tls-certificate.py"
+        evidence: "evidence/pet-medicine-app/app-config.toml"
+  - name: pet-medicine-db
+    short: "Pet Medicine Database Configuration"
+    description: |
+      "Verify the Pet Medicine Database configuration has the required settings to
+      ensure security and operational resilence control standards are met."
+    action:
+      - name: database-host-user
+        short: "Database Host User"
+        description: "The database operates under host user account 'pet-med-db'."
+        test: "activity/pet-medicine-db/database-host-user.py"
+        evidence: "evidence/pet-medicine-db/my-db.ini"
+      - name: database-port
+        short: "Database Port"
+        description: "The database communicates from port '3306'."
+        test: "activity/pet-medicine-db/database-port.py"
+        evidence: "evidence/pet-medicine-db/my-db.ini"
+      - name: enforce-tls
+        short: "Enforce TLS"
+        description: "The database requires TLS for all TCP connections."
+        test: "activity/pet-medicine-db/enforce-tls.py"
+        evidence: "evidence/pet-medicine-db/my-db.ini"
+      - name: current-tls-certificate
+        short: "Current TLS Certificate"
+        description: "The TLS Certificate is no less than 5 days from it's expiration date."
+        test: "activity/pet-medicine-app/current-tls-certificate.py"
+        evidence: "evidence/pet-medicine-db/my-db.ini"
+  - name: pet-medicine-host
+    short: "Pet Medicine Host"
+    description: |
+      "Verify the Pet Medicine Host which acts as the server for the Pet Medicine Application and it's database
+      configis propelry configured to ensure security and operational resilence control standards are met."
+    action:
+      - name: app-user
+        short: "Application Host User"
+        description: "The application only operates under user account 'pet-med-app'."
+        test: "activity/pet-medicine-host/app-user.py"
+        evidence: "evidence/pet-medicine-host/stdout-app-user.txt"
+      - name: app-user-no-login
+        short: "Application User Cannot Login"
+        description: "The user account 'pet-med-app' is not configured to login into the host."
+        test: "activity/pet-medicine-host/app-user-no-login.py"
+        evidence: "evidence/pet-medicine-host/stdout-app-user-no-login.txt"
+      - name: app-user-not-root
+        short: "Application User not Root"
+        description: "The user account 'pet-med-app' is not configured as a root user."
+        test: "activity/pet-medicine-host/app-user-not-root.py"
+        evidence: "evidence/pet-medicine-host/stdout-app-user-not-root.txt"
+      - name: db-user
+        short: "Database Host User"
+        description: "The database only operates under the user account 'pet-med-db'."
+        test: "activity/pet-medicine-host/db-user.py"
+        evidence: "evidence/pet-medicine-host/stdout-db-user.txt"
+      - name: db-user-no-login
+        short: "Database  User Cannot Loging"
+        description: "The user account 'pet-med-db' is not configured to login into the host."
+        test: "activity/pet-medicine-host/db-user-no-login.py"
+        evidence: "evidence/pet-medicine-host/stdout-db-user-no-login.txt"
+      - name: db-user-not-root
+        short: "Database User not Root"
+        description: "The user account 'pet-med-db' is not configured as a root user."
+        test: "activity/pet-medicine-host/db-user-not-root.py"
+        evidence: "evidence/pet-medicine-host/stdout-db-user-not-root.txt"
+      - name: admin-user-not-root
+        short: "Admin User not Root"
+        description: "The admin user account 'pet-med-admin' is not configured as a root user."
+        test: "activity/pet-medicine-host/admin-user-not-root.py"
+        evidence: "evidence/pet-medicine-host/stdout-admin-user-not-root.txt"
+      - name: admin-user-commands-logged
+        short: "Admin User Commands Logged"
+        description: "The AuditCtl is logging all commands invoked by the 'pet-med-admin' account."
+        test: "activity/pet-medicine-host/admin-user-commands-logged.py"
+        evidence: "evidence/pet-medicine-host/stdout-admin-user-commands-logged.txt"
+      - name: app-user-commands-logged
+        short: "Admin User Commands Logged"
+        description: "The AuditCtl is logging all commands invoked by the 'pet-med-app' account."
+        test: "activity/pet-medicine-host/app-user-commands-logged.py"
+        evidence: "evidence/pet-medicine-host/stdout-app-user-commands-logged.txt"
+      - name: db-user-commands-logged
+        short: "Admin User Commands Logged"
+        description: "The AuditCtl is logging all commands invoked by the 'pet-med-db' account."
+        test: "activity/pet-medicine-host/db-user-commands-logged.py"
+        evidence: "evidence/pet-medicine-host/stdout-db-user-commands-logged.txt"
+      - name: command-audit-installed
+        short: "Command Audit Tool Isntalled"
+        description: "The AuditCtl is installed and operational."
+        test: "activity/pet-medicine-host/command-audit-installed.py"
+        evidence: "evidence/pet-medicine-host/stdout-command-audit-installed.txt"
