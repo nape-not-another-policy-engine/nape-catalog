@@ -9,11 +9,11 @@ def evaluate(evidence):
         data = tomllib.loads(toml_content)
 
         # Check for database TLS settings
-        tls_enabled = data.get('database', {}).get('tls', {}).get('enabled')
+        actual = data.get('database', {}).get('tls', {}).get('enabled')
 
-        if tls_enabled is None:
+        if actual is None:
             return ("inconclusive", "It is inconclusive if TLS is enabled for the database because 'database.tls.enabled' is not found in the evidence.")
-        elif tls_enabled is True:
+        elif actual is True:
             return ("pass", "TLS is correctly enabled for the database as 'database.tls.enabled' is set to true.")
         else:
             return ("fail", "TLS is not enabled for the database as 'database.tls.enabled' is set to false.")
