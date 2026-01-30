@@ -58,10 +58,10 @@ activity:
         description: "The database requires TLS for all TCP connections."
         test: "activity/pet-medicine-db/enforce-tls.py"
         evidence: "evidence/pet-medicine-db/my-db.ini"
-      - name: current-tls-certificate
+      - name: database-tls-configured
         short: "Current TLS Certificate"
-        description: "The TLS Certificate is no less than 5 days from it's expiration date."
-        test: "activity/pet-medicine-db/current-tls-certificate.py"
+        description: "The database is configured for production using the proper public key, private key, and trusted certificate bundle."
+        test: "activity/pet-medicine-db/database-tls-configured.py"
         evidence: "evidence/pet-medicine-db/my-db.ini"
   - name: pet-medicine-host
     short: "Pet Medicine Host"
