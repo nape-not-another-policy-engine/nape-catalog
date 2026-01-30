@@ -24,7 +24,7 @@ activity:
         evidence: "evidence/pet-medicine-app/app-config.toml"
       - name: database-user-secret
         short: "Database User Secret String"
-        description: "The application retrieves the databse users credentials from the secrets store 'secrets://vault/prod/pet_medicine_app_db_user'."
+        description: "The application retrieves the database users credentials from the secrets store 'secrets://vault/prod/pet_medicine_app_db_user'."
         test: "activity/pet-medicine-app/database-user-secret.py"
         evidence: "evidence/pet-medicine-app/app-config.toml"
       - name: enforce-https
@@ -32,10 +32,10 @@ activity:
         description: "The applicaiton enforces the use of HTTPS when communicating with clients."
         test: "activity/pet-medicine-app/enforce-https.py"
         evidence: "evidence/pet-medicine-app/app-config.toml"
-      - name: current-tls-certificate
-        short: "Current TLS Certificate"
-        description: "The applicaiton is using a TLS Certificate that is not expired."
-        test: "activity/pet-medicine-app/current-tls-certificate.py"
+      - name: app-tls-configured
+        short: "Application TLS Configured"
+        description: "The applicaiton is configured for production using the properly public key, private key, and trusted certificate bundle."
+        test: "activity/pet-medicine-app/app-tls-configured.py"
         evidence: "evidence/pet-medicine-app/app-config.toml"
   - name: pet-medicine-db
     short: "Pet Medicine Database Configuration"
@@ -61,7 +61,7 @@ activity:
       - name: current-tls-certificate
         short: "Current TLS Certificate"
         description: "The TLS Certificate is no less than 5 days from it's expiration date."
-        test: "activity/pet-medicine-app/current-tls-certificate.py"
+        test: "activity/pet-medicine-db/current-tls-certificate.py"
         evidence: "evidence/pet-medicine-db/my-db.ini"
   - name: pet-medicine-host
     short: "Pet Medicine Host"
